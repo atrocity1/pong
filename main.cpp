@@ -83,15 +83,16 @@ int main(){
             ballposition.x = screenWidth / 2;
             ballposition.y = screenHeight / 2;
         }
+        
 
 
         if (paddle2.y + 50 < ballposition.y)
         {
-            paddle2.y += 4;
+            paddle2.y += 3;
         }
         else if (paddle2.y - 50 < ballposition.y)
         {
-            paddle2.y -= 4;
+            paddle2.y -= 3;
         }
         
         
