@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
-#include <cmath> // Necessário para o usar o fabs() de forma segura
+#include <cmath>
+#include <iostream>
 
 
 int main(){
@@ -8,6 +9,8 @@ int main(){
     const int screenWidth = 800;
     const int screenHeight = 450;
     float margin = 40.0f;
+    int letters = 0;
+    int enemyletters = 0;
 
 
     InitWindow(screenWidth, screenHeight, "Pong");
@@ -60,10 +63,23 @@ int main(){
         {
             paddle.y = screenHeight - 110;
         }
-        else if (paddle2.y >= screenHeight - 110)
+        else if (paddle2.y >= screenHeight - 110) // SO PRO PADDLEE NAO FICA FUGINDO DA TELA
         {
             paddle2.y = screenHeight - 110;
         }
+
+        if (ballposition.x >= screenWidth + 30)
+        {
+            letters += 1;
+            ballposition.x = screenWidth / 2;
+            ballposition.y = screenHeight / 2;
+        } else if (ballposition.x <= paddle.x - 20)
+        {
+            letters += 1;
+        }
+        
+        
+
         
         
         
@@ -78,6 +94,8 @@ int main(){
             DrawRectangleRec(paddle, WHITE);
             DrawRectangleRec(paddle2, WHITE);
             DrawCircleV(ballposition, 10, WHITE);
+            DrawText(TextFormat("%i", letters), screenWidth/4, 30, 20, WHITE);
+            DrawText(TextFormat("%i", enemyletters), (screenWidth / 4) * 3, 30, 20, WHITE);
 
         EndDrawing();
     }
