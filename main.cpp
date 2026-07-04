@@ -10,7 +10,7 @@ int main(){
     InitWindow(screenWidth, screenHeight, "Pong");
 
     Rectangle paddle = {40.0f, 300.0f, 20.0f, 100.0f};
-    Vector2 paddle2 = {(float)screenWidth - margin, (float)screenHeight / 2};
+    Rectangle paddle2 = {(float)screenWidth - margin, (float)screenHeight / 2};
     Vector2 ballposition = {screenWidth/2, screenHeight/2};
     Vector2 ballspeed = {5.0f, 5.0f};
 
@@ -27,14 +27,21 @@ int main(){
         {
             paddle.y += 5;
         }
+        ballposition.x += ballspeed.x;
+        ballspeed.y += ballspeed.y;
         
         if (CheckCollisionCircleRec(ballposition, 10, paddle))
         {
+            ballspeed.x *= -1.0f;
             ballposition.x += ballspeed.x;
         }
-        else{
-            ballposition.x -= ballspeed.x;
+        else if (CheckCollisionCircleRec(ballposition, 10, paddle2))
+        {
+            ballspeed.x *= -1.0f;
+            ballposition.x += ballspeed.x; 
         }
+        
+        
 
 
         
