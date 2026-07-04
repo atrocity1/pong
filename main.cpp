@@ -71,12 +71,30 @@ int main(){
         if (ballposition.x >= screenWidth + 30)
         {
             letters += 1;
+            ballspeed.x = 5.0f;
+            ballspeed.y = 1.0f;
             ballposition.x = screenWidth / 2;
             ballposition.y = screenHeight / 2;
         } else if (ballposition.x <= paddle.x - 20)
         {
             letters += 1;
+            ballspeed.x = 5.0f;
+            ballspeed.y = 1.0f;
+            ballposition.x = screenWidth / 2;
+            ballposition.y = screenHeight / 2;
         }
+
+
+        if (paddle2.y + 50 < ballposition.y)
+        {
+            paddle2.y += 4;
+        }
+        else if (paddle2.y - 50 < ballposition.y)
+        {
+            paddle2.y -= 4;
+        }
+        
+        
         
         
 
